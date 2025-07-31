@@ -78,7 +78,19 @@ sixarms-landing/
 
 ## 🚀 Deployment
 
-Deploy to Vercel:
+### Deploy to Zeabur
+
+1. Fork or push this repository to your GitHub account
+2. Go to [Zeabur Console](https://dash.zeabur.com)
+3. Create a new project and select your GitHub repository
+4. Configure environment variables in Zeabur dashboard:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+   - `STRIPE_SECRET_KEY`
+5. Deploy!
+
+### Deploy to Vercel
 
 ```bash
 # Install Vercel CLI
