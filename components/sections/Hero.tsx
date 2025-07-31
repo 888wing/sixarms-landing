@@ -1,18 +1,21 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { MagneticButton } from '@/components/ui/MagneticButton'
+import { VideoModal } from '@/components/ui/VideoModal'
 import { navigateToApp } from '@/lib/config'
 
 export const Hero = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+
   const handleGetStarted = () => {
     navigateToApp('/signup')
   }
 
   const handleWatchVideo = () => {
-    // TODO: Implement video modal
-    console.log('Watch video clicked')
+    setIsVideoModalOpen(true)
   }
 
   return (
@@ -118,6 +121,14 @@ export const Hero = () => {
           </svg>
         </motion.div>
       </motion.div>
+
+      {/* Video Modal */}
+      <VideoModal 
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ" // TODO: Replace with actual SIXARMS demo video
+        videoTitle="See SIXARMS in Action"
+      />
     </section>
   )
 }

@@ -14,9 +14,9 @@ const footerLinks = {
     { name: 'Contact', href: '#' },
   ],
   legal: [
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
-    { name: 'Cookie Policy', href: '#' },
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
+    { name: 'Cookie Policy', href: '/privacy#cookies' },
   ],
   social: [
     { name: 'Twitter', href: '#', icon: 'twitter' },
