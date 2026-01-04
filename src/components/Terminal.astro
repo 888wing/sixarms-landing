@@ -9,61 +9,19 @@ const { title = "terminal", class: className = "" } = Astro.props;
 
 <div class:list={["terminal", className]}>
   <div class="terminal-header">
-    <span class="terminal-dot red"></span>
-    <span class="terminal-dot yellow"></span>
-    <span class="terminal-dot green"></span>
+    <div class="terminal-dots">
+      <span class="terminal-dot red"></span>
+      <span class="terminal-dot yellow"></span>
+      <span class="terminal-dot green"></span>
+    </div>
     <span class="terminal-title">{title}</span>
+    <div class="terminal-dots" style="visibility: hidden;">
+      <span class="terminal-dot"></span>
+      <span class="terminal-dot"></span>
+      <span class="terminal-dot"></span>
+    </div>
   </div>
   <div class="terminal-body">
     <slot />
   </div>
 </div>
-
-<style>
-  .terminal {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  }
-
-  .terminal-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    background: var(--bg-tertiary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  .terminal-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-
-  .terminal-dot.red { background: #ff5f56; }
-  .terminal-dot.yellow { background: #ffbd2e; }
-  .terminal-dot.green { background: #27ca40; }
-
-  .terminal-title {
-    flex: 1;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-  }
-
-  .terminal-body {
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    min-height: 200px;
-  }
-
-  @media (max-width: 768px) {
-    .terminal-body {
-      padding: 1rem;
-      font-size: 0.8rem;
-    }
-  }
-</style>

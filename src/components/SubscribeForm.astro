@@ -1,0 +1,128 @@
+---
+interface Props {
+  source?: string;
+}
+
+const { source = "windows-waitlist" } = Astro.props;
+---
+
+<form id="subscribe-form" class="subscribe-form" data-source={source}>
+  <input 
+    type="email" 
+    name="email" 
+    placeholder="your@email.com" 
+    required
+    autocomplete="email"
+  >
+  <button type="submit" id="subscribe-btn" class="btn btn-accent">
+    <span class="btn-text">Notify Me</span>
+    <span class="btn-loading" hidden>...</span>
+  </button>
+</form>
+
+<p id="form-message" class="form-message" hidden></p>
+
+<style>
+  .subscribe-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 24px 0 16px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 14px 18px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+  }
+  
+  .subscribe-form input:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 2px rgba(0, 217, 255, 0.2);
+  }
+  
+  .subscribe-form button {
+    min-width: 120px;
+  }
+  
+  .form-message {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  
+  .form-message.success {
+    color: var(--text-primary);
+  }
+  
+  .form-message.error {
+    color: #ff4444;
+  }
+  
+  @media (max-width: 480px) {
+    .subscribe-form {
+      flex-direction: column;
+    }
+    
+    .subscribe-form button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('subscribe-form') as HTMLFormElement;
+  const btn = document.getElementById('subscribe-btn') as HTMLButtonElement;
+  const message = document.getElementById('form-message') as HTMLParagraphElement;
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const source = form.dataset.source || 'windows-waitlist';
+    
+    // Loading state
+    btn.disabled = true;
+    const btnText = btn.querySelector('.btn-text') as HTMLElement;
+    const btnLoading = btn.querySelector('.btn-loading') as HTMLElement;
+    if (btnText) btnText.hidden = true;
+    if (btnLoading) btnLoading.hidden = false;
+    
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source })
+      });
+      
+      const data = await res.json();
+      
+      message.hidden = false;
+      message.textContent = data.success 
+        ? "✓ You're on the list!" 
+        : data.error || 'Something went wrong';
+      message.className = `form-message ${data.success ? 'success' : 'error'}`;
+      
+      if (data.success) {
+        form.reset();
+      }
+    } catch (err) {
+      message.hidden = false;
+      message.textContent = 'Network error, please try again';
+      message.className = 'form-message error';
+    } finally {
+      btn.disabled = false;
+      if (btnText) btnText.hidden = false;
+      if (btnLoading) btnLoading.hidden = true;
+    }
+  });
+</script>

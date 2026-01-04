@@ -6,270 +6,234 @@ import Base from '../layouts/Base.astro';
   <section class="legal-page">
     <div class="container">
       <div class="legal-header">
-        <span class="file-path">// terms-of-service.md</span>
-      </div>
-
-      <article class="legal-content">
-        <h1># Terms of Service</h1>
-
+        <span class="section-label">// terms-of-service.md</span>
+        <h1>Terms of Service</h1>
         <p class="last-updated">Last updated: January 2026</p>
-
-        <section>
-          <h2>## License</h2>
-
-          <p>Sixarms is released under the <strong>MIT License</strong>.</p>
-
-          <div class="code-block">
-            <code>
-MIT License
-
-Copyright (c) 2026 Sixarms
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-            </code>
+      </div>
+      
+      <div class="legal-content">
+        <section class="legal-section">
+          <h2>License</h2>
+          <p>
+            Sixarms is released under the <strong>MIT License</strong>. You are free to use, modify, 
+            and distribute this software in accordance with the terms of the MIT License.
+          </p>
+          <div class="license-block">
+            <p>MIT License</p>
+            <p>Copyright (c) 2026 Sixarms</p>
+            <p>
+              Permission is hereby granted, free of charge, to any person obtaining a copy
+              of this software and associated documentation files (the "Software"), to deal
+              in the Software without restriction, including without limitation the rights
+              to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+              copies of the Software, and to permit persons to whom the Software is
+              furnished to do so, subject to the following conditions:
+            </p>
+            <p>
+              The above copyright notice and this permission notice shall be included in all
+              copies or substantial portions of the Software.
+            </p>
           </div>
         </section>
-
-        <section>
-          <h2>## Acceptable Use</h2>
-
-          <p>By using Sixarms, you agree to:</p>
+        
+        <section class="legal-section">
+          <h2>Acceptable Use</h2>
+          <p>When using Sixarms, you agree to:</p>
           <ul>
-            <li>Use the software for lawful purposes only</li>
-            <li>Not attempt to reverse engineer, decompile, or modify the software maliciously</li>
-            <li>Not use the software to collect data from others without consent</li>
+            <li>Use the software only for lawful purposes</li>
+            <li>Not attempt to reverse engineer, hack, or exploit the software maliciously</li>
+            <li>Not use the software to process or store illegal content</li>
             <li>Comply with all applicable local, state, national, and international laws</li>
           </ul>
         </section>
-
-        <section>
-          <h2>## Third-Party Services</h2>
-
-          <p>Sixarms integrates with third-party services:</p>
-
-          <h3>### Grok API (x.ai)</h3>
-          <p>When using AI features, you must:</p>
+        
+        <section class="legal-section">
+          <h2>Third-Party Services</h2>
+          <p>
+            Sixarms integrates with third-party services (such as xAI's Grok API). Your use of these 
+            services is subject to their respective terms of service:
+          </p>
           <ul>
-            <li>Provide your own valid Grok API key</li>
-            <li>Comply with <a href="https://x.ai/legal/terms-of-service" target="_blank" rel="noopener">Grok's Terms of Service</a></li>
-            <li>Be responsible for any API usage charges</li>
-          </ul>
-
-          <p>We are not responsible for:</p>
-          <ul>
-            <li>Service availability or quality of Grok API</li>
-            <li>Changes to Grok's pricing or terms</li>
-            <li>Data handling by third-party services</li>
+            <li>xAI Grok API - Subject to xAI's terms of service</li>
+            <li>Your API keys and credentials remain your responsibility</li>
           </ul>
         </section>
-
-        <section>
-          <h2>## Disclaimer of Warranties</h2>
-
-          <div class="disclaimer-box">
-            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</p>
+        
+        <section class="legal-section">
+          <h2>Disclaimer of Warranties</h2>
+          <div class="disclaimer-block">
+            <p>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+              IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+              FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+            </p>
           </div>
-
-          <p>Specifically, we do not warrant that:</p>
+          <p>
+            Specifically, we do not warrant that:
+          </p>
           <ul>
             <li>The software will meet your specific requirements</li>
             <li>The software will be uninterrupted, timely, secure, or error-free</li>
-            <li>The results from using the software will be accurate or reliable</li>
+            <li>The results obtained from using the software will be accurate or reliable</li>
             <li>Any errors in the software will be corrected</li>
           </ul>
         </section>
-
-        <section>
-          <h2>## Limitation of Liability</h2>
-
-          <p>IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-
-          <p>This includes but is not limited to:</p>
-          <ul>
-            <li>Loss of data or development logs</li>
-            <li>Incorrect AI classifications or summaries</li>
-            <li>System crashes or performance issues</li>
-            <li>Security vulnerabilities</li>
-          </ul>
+        
+        <section class="legal-section">
+          <h2>Limitation of Liability</h2>
+          <div class="disclaimer-block">
+            <p>
+              IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+              DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+              ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+              DEALINGS IN THE SOFTWARE.
+            </p>
+          </div>
         </section>
-
-        <section>
-          <h2>## Data Responsibility</h2>
-
-          <p>You are solely responsible for:</p>
-          <ul>
-            <li>Backing up your development logs and data</li>
-            <li>Securing your Grok API key</li>
-            <li>Reviewing AI-generated content for accuracy</li>
-            <li>Complying with your organization's data policies</li>
-          </ul>
+        
+        <section class="legal-section">
+          <h2>Data and Privacy</h2>
+          <p>
+            Your use of Sixarms is also governed by our <a href="/privacy">Privacy Policy</a>, 
+            which describes how we collect, use, and protect your data.
+          </p>
         </section>
-
-        <section>
-          <h2>## Changes to Terms</h2>
-
-          <p>We reserve the right to modify these terms at any time. Changes will be:</p>
-          <ul>
-            <li>Posted on this page with updated date</li>
-            <li>Communicated through application updates for significant changes</li>
-          </ul>
-          <p>Continued use of the software after changes constitutes acceptance of the new terms.</p>
+        
+        <section class="legal-section">
+          <h2>Changes to Terms</h2>
+          <p>
+            We reserve the right to modify these terms at any time. We will provide notice of 
+            significant changes through our website or GitHub repository. Your continued use of 
+            the software after such modifications constitutes acceptance of the updated terms.
+          </p>
         </section>
-
-        <section>
-          <h2>## Governing Law</h2>
-
-          <p>These terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles.</p>
+        
+        <section class="legal-section">
+          <h2>Termination</h2>
+          <p>
+            You may stop using Sixarms at any time by uninstalling the application. 
+            These terms will survive any termination of your use of the software.
+          </p>
         </section>
-
-        <section>
-          <h2>## Contact</h2>
-
-          <p>For questions about these terms:</p>
-          <ul>
-            <li>GitHub Issues: <a href="https://github.com/888wing/sixarms/issues" target="_blank" rel="noopener">github.com/888wing/sixarms/issues</a></li>
-          </ul>
+        
+        <section class="legal-section">
+          <h2>Contact</h2>
+          <p>
+            For questions about these terms, please open an issue on our 
+            <a href="https://github.com/anthropics/sixarms" target="_blank" rel="noopener">GitHub repository</a>.
+          </p>
         </section>
-      </article>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
   .legal-page {
-    padding: 8rem 0 4rem;
+    padding: 80px 20px;
+    min-height: calc(100vh - 200px);
   }
-
+  
   .legal-header {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    padding: 1rem 1.5rem;
-  }
-
-  .file-path {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-  }
-
-  .legal-content {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0 0 8px 8px;
-    padding: 2rem;
     max-width: 800px;
+    margin: 0 auto 48px;
   }
-
-  .legal-content h1 {
-    font-size: 1.75rem;
-    color: var(--accent-green);
-    margin-bottom: 0.5rem;
+  
+  .legal-header h1 {
+    margin: 16px 0 8px;
   }
-
+  
   .last-updated {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-primary);
+    color: var(--text-dim);
+    font-size: 0.9rem;
   }
-
-  .legal-content section {
-    margin-bottom: 2rem;
+  
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 40px;
   }
-
-  .legal-content h2 {
-    font-size: 1.25rem;
-    color: var(--accent-cyan);
-    margin-bottom: 1rem;
+  
+  .legal-section {
+    margin-bottom: 40px;
   }
-
-  .legal-content h3 {
-    font-size: 1rem;
+  
+  .legal-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .legal-section h2 {
     color: var(--text-primary);
-    margin: 1rem 0 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
   }
-
-  .legal-content p {
-    color: var(--text-secondary);
+  
+  .legal-section p {
+    color: var(--text-muted);
     line-height: 1.7;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
   }
-
-  .legal-content ul {
+  
+  .legal-section ul {
     list-style: none;
-    margin-bottom: 1rem;
+    margin: 12px 0;
   }
-
-  .legal-content li {
-    color: var(--text-secondary);
-    padding: 0.25rem 0;
-    padding-left: 1.5rem;
+  
+  .legal-section li {
+    color: var(--text-muted);
+    padding: 8px 0 8px 20px;
     position: relative;
     line-height: 1.6;
   }
-
-  .legal-content li::before {
-    content: '•';
-    position: absolute;
-    left: 0.5rem;
-    color: var(--accent-green);
-  }
-
-  .legal-content strong {
+  
+  .legal-section li::before {
+    content: "•";
     color: var(--text-primary);
+    position: absolute;
+    left: 0;
   }
-
-  .legal-content a {
+  
+  .legal-section strong {
+    color: var(--text-white);
+  }
+  
+  .license-block,
+  .disclaimer-block {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  
+  .license-block p,
+  .disclaimer-block p {
+    margin-bottom: 12px;
+    color: var(--text-dim);
+  }
+  
+  .license-block p:last-child,
+  .disclaimer-block p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .legal-section a {
     color: var(--accent-cyan);
   }
-
-  .code-block {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-primary);
-    border-radius: 4px;
-    padding: 1rem;
-    margin: 1rem 0;
-    overflow-x: auto;
+  
+  .legal-section a:hover {
+    text-decoration: underline;
   }
-
-  .code-block code {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    white-space: pre-wrap;
-    display: block;
-  }
-
-  .disclaimer-box {
-    background: rgba(255, 184, 0, 0.1);
-    border: 1px solid rgba(255, 184, 0, 0.3);
-    border-radius: 4px;
-    padding: 1rem;
-    margin: 1rem 0;
-  }
-
-  .disclaimer-box p {
-    color: var(--accent-amber);
-    font-size: 0.85rem;
-    margin: 0;
-  }
-
+  
   @media (max-width: 768px) {
     .legal-content {
-      padding: 1.5rem;
-    }
-
-    .legal-content h1 {
-      font-size: 1.5rem;
+      padding: 24px;
     }
   }
 </style>

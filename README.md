@@ -1,12 +1,13 @@
 # Sixarms Landing Page
 
-Landing page for [Sixarms](https://github.com/888wing/sixarms) - AI-powered development progress tracking assistant.
+Marketing website for Sixarms - AI-powered development progress tracker.
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build)
-- **Styling**: Custom CSS with terminal/Matrix theme
-- **Hosting**: Cloudflare Pages
+- **Framework**: Astro
+- **Deployment**: Cloudflare Pages
+- **Database**: Cloudflare D1 (email subscriptions)
+- **Styling**: Native CSS (Terminal theme)
 
 ## Development
 
@@ -14,7 +15,7 @@ Landing page for [Sixarms](https://github.com/888wing/sixarms) - AI-powered deve
 # Install dependencies
 npm install
 
-# Start development server
+# Start dev server
 npm run dev
 
 # Build for production
@@ -24,23 +25,41 @@ npm run build
 npm run preview
 ```
 
-## Pages
+## Cloudflare D1 Setup
 
-- `/` - Home (Hero + Features)
-- `/download` - Download page with installation guide
-- `/privacy` - Privacy Policy
-- `/terms` - Terms of Service
+1. Create the D1 database:
+   ```bash
+   wrangler d1 create sixarms-subscribers
+   ```
+
+2. Update `wrangler.toml` with your database ID
+
+3. Create the table:
+   ```bash
+   wrangler d1 execute sixarms-subscribers --file=schema.sql
+   ```
 
 ## Deployment
 
-This site is automatically deployed to Cloudflare Pages via GitHub integration.
+The site auto-deploys to Cloudflare Pages when pushing to the main branch.
 
-### Cloudflare Pages Settings
+Manual deployment:
+```bash
+npm run build
+wrangler pages deploy dist
+```
 
-- **Build command**: `npm run build`
-- **Build output directory**: `dist`
-- **Node.js version**: 18
+## Project Structure
 
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
+```
+sixarms-landing/
+├── src/
+│   ├── pages/          # Astro pages
+│   ├── components/     # Reusable components
+│   ├── layouts/        # Page layouts
+│   └── styles/         # Global styles
+├── functions/
+│   └── api/            # Cloudflare Pages Functions
+├── public/             # Static assets
+└── schema.sql          # D1 database schema
+```

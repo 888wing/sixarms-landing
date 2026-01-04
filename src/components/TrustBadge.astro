@@ -1,0 +1,50 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+const { icon, title, subtitle, description } = Astro.props;
+---
+
+<div class="trust-badge">
+  <span class="trust-icon">{icon}</span>
+  <div class="trust-title">{title}</div>
+  <div class="trust-subtitle">{subtitle}</div>
+  <div class="trust-description">{description}</div>
+</div>
+
+<style>
+  .trust-badge {
+    text-align: center;
+    padding: 24px 16px;
+  }
+  
+  .trust-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+  
+  .trust-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 4px;
+  }
+  
+  .trust-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .trust-description {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+</style>

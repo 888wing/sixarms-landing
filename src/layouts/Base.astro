@@ -2,144 +2,101 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = "AI-powered development progress tracking assistant" } = Astro.props;
+const { 
+  title, 
+  description = "AI-powered development progress tracker. Stop writing daily logs manually - let AI track your commits and generate meaningful summaries.",
+  ogImage = "/images/og-image.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="author" content="Sixarms" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="nav">
-      <div class="container nav-container">
-        <a href="/" class="nav-logo">
-          <span class="logo-bracket">[</span>
-          <span class="logo-text">Sixarms</span>
-          <span class="logo-bracket">]</span>
-        </a>
-
-        <div class="nav-links">
-          <a href="/#features" class="nav-link">Features</a>
-          <a href="/download" class="nav-link">Download</a>
-          <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener" class="nav-link">GitHub</a>
-        </div>
-
-        <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener" class="nav-star">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
-          </svg>
-          Star
-        </a>
-
-        <!-- Mobile Menu Button -->
-        <button class="nav-mobile-btn" aria-label="Toggle menu" id="mobile-menu-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  
+  <!-- Canonical -->
+  <link rel="canonical" href={canonicalURL}>
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={new URL(ogImage, Astro.site)}>
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site)}>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <title>{title}</title>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">[Sixarms]</a>
+      
+      <div class="nav-links">
+        <a href="/#features" class="nav-link">Features</a>
+        <a href="/download" class="nav-link">Download</a>
+        <a href="https://github.com/anthropics/sixarms" target="_blank" rel="noopener" class="nav-link">GitHub</a>
       </div>
+      
+      <a 
+        href="https://github.com/anthropics/sixarms" 
+        target="_blank" 
+        rel="noopener" 
+        class="nav-star"
+      >
+        <span class="star-icon">★</span> Star
+      </a>
+    </div>
+  </nav>
 
-      <!-- Mobile Menu Overlay -->
-      <div class="nav-mobile-menu" id="mobile-menu">
-        <a href="/#features" class="nav-mobile-link">Features</a>
-        <a href="/download" class="nav-mobile-link">Download</a>
-        <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener" class="nav-mobile-link">GitHub</a>
-        <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener" class="nav-mobile-star">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
-          </svg>
-          Star on GitHub
-        </a>
+  <!-- Main Content -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        Sixarms © {new Date().getFullYear()}
       </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-      <slot />
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-divider"></div>
-
-        <div class="footer-content">
-          <p class="footer-copyright">Sixarms &copy; {new Date().getFullYear()}</p>
-
-          <div class="footer-links">
-            <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener">GitHub</a>
-            <a href="/download">Download</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-          </div>
-
-          <p class="footer-tagline">Made with ♥ for developers who hate writing daily logs</p>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      // Mobile Menu Toggle
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const nav = document.querySelector('.nav');
-
-      mobileMenuBtn?.addEventListener('click', () => {
-        mobileMenuBtn.classList.toggle('active');
-        mobileMenu?.classList.toggle('active');
-        document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
-      });
-
-      // Close menu when clicking a link
-      mobileMenu?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenuBtn?.classList.remove('active');
-          mobileMenu?.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Scroll effect for nav
-      let lastScroll = 0;
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 50) {
-          nav?.classList.add('scrolled');
-        } else {
-          nav?.classList.remove('scrolled');
-        }
-
-        lastScroll = currentScroll;
-      });
-    </script>
-  </body>
+      
+      <nav class="footer-links">
+        <a href="https://github.com/anthropics/sixarms" target="_blank" rel="noopener">GitHub</a>
+        <a href="/download">Download</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </nav>
+      
+      <p class="footer-tagline">
+        Made with ♥ for developers who hate writing daily logs
+      </p>
+    </div>
+  </footer>
+</body>
 </html>
 
-<style>
+<style is:global>
   @import '../styles/global.css';
+</style>
 
+<style>
   /* Navigation */
   .nav {
     position: fixed;
@@ -147,222 +104,125 @@ const { title, description = "AI-powered development progress tracking assistant
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 1rem 0;
     background: rgba(10, 10, 10, 0.9);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border);
   }
-
+  
   .nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
+  
   .nav-logo {
-    display: flex;
-    align-items: center;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-white);
     text-decoration: none;
   }
-
-  .logo-bracket {
-    color: var(--text-muted);
+  
+  .nav-logo:hover {
+    color: var(--text-primary);
   }
-
-  .logo-text {
-    color: var(--accent-green);
-  }
-
+  
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 32px;
   }
-
+  
   .nav-link {
-    color: var(--text-muted);
     font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
     transition: color 0.2s ease;
   }
-
+  
   .nav-link:hover {
-    color: var(--accent-cyan);
+    color: var(--text-white);
   }
-
+  
   .nav-star {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    color: var(--accent-amber);
-    border: 1px solid var(--accent-amber);
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
     border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-white);
+    text-decoration: none;
     transition: all 0.2s ease;
   }
-
+  
   .nav-star:hover {
-    background: rgba(255, 184, 0, 0.1);
-    box-shadow: 0 0 15px rgba(255, 184, 0, 0.2);
-  }
-
-  .nav-mobile-btn {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-  }
-
-  .nav-mobile-btn span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--text-primary);
-    transition: all 0.3s ease;
-  }
-
-  .nav-mobile-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(4px, 4px);
-  }
-
-  .nav-mobile-btn.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-mobile-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -4px);
-  }
-
-  /* Mobile Menu Overlay */
-  .nav-mobile-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-primary);
-    padding: 1.5rem;
-    flex-direction: column;
-    gap: 0.5rem;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .nav-mobile-menu.active {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .nav-mobile-link {
-    display: block;
-    padding: 1rem;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
-
-  .nav-mobile-link:hover {
-    background: rgba(0, 255, 65, 0.1);
-    color: var(--accent-green);
-  }
-
-  .nav-mobile-star {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 1rem;
+    border-color: var(--accent-amber);
     color: var(--accent-amber);
-    border: 1px solid var(--accent-amber);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.2s ease;
   }
-
-  .nav-mobile-star:hover {
-    background: rgba(255, 184, 0, 0.1);
+  
+  .star-icon {
+    color: var(--accent-amber);
   }
-
-  /* Nav Scroll State */
-  .nav.scrolled {
-    padding: 0.75rem 0;
-    background: rgba(10, 10, 10, 0.95);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  }
-
+  
   /* Footer */
   .footer {
-    padding: 3rem 0;
-  }
-
-  .footer-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-primary), transparent);
-    margin-bottom: 2rem;
-  }
-
-  .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding: 40px 20px;
     text-align: center;
   }
-
-  .footer-copyright {
-    color: var(--text-muted);
-    font-size: 0.85rem;
+  
+  .footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
   }
-
+  
+  .footer-brand {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  
   .footer-links {
     display: flex;
-    gap: 1.5rem;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
   }
-
+  
   .footer-links a {
-    color: var(--text-muted);
     font-size: 0.85rem;
+    color: var(--text-dim);
+    text-decoration: none;
     transition: color 0.2s ease;
   }
-
+  
   .footer-links a:hover {
-    color: var(--accent-cyan);
+    color: var(--text-primary);
   }
-
+  
   .footer-tagline {
-    color: var(--text-dim);
     font-size: 0.8rem;
+    color: var(--text-dim);
   }
-
-  /* Mobile */
+  
+  /* Main content offset for fixed nav */
+  main {
+    padding-top: 60px;
+  }
+  
+  /* Responsive */
   @media (max-width: 768px) {
     .nav-links {
       display: none;
     }
-
-    .nav-star {
-      display: none;
-    }
-
-    .nav-mobile-btn {
-      display: flex;
-    }
-
+    
     .footer-links {
       flex-wrap: wrap;
-      justify-content: center;
+      gap: 16px;
     }
   }
 </style>
