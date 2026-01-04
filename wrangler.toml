@@ -4,6 +4,6 @@ compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "sixarms-subscribers"
-database_id = "YOUR_DATABASE_ID"
+database_id = "db46e8c6-1e1b-415b-959b-430f2d867f77"
 # Run: wrangler d1 create sixarms-subscribers
 # Then replace YOUR_DATABASE_ID with the actual ID
