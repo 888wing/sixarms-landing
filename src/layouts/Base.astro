@@ -53,11 +53,24 @@ const { title, description = "AI-powered development progress tracking assistant
         </a>
 
         <!-- Mobile Menu Button -->
-        <button class="nav-mobile-btn" aria-label="Toggle menu">
+        <button class="nav-mobile-btn" aria-label="Toggle menu" id="mobile-menu-btn">
           <span></span>
           <span></span>
           <span></span>
         </button>
+      </div>
+
+      <!-- Mobile Menu Overlay -->
+      <div class="nav-mobile-menu" id="mobile-menu">
+        <a href="/#features" class="nav-mobile-link">Features</a>
+        <a href="/download" class="nav-mobile-link">Download</a>
+        <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener" class="nav-mobile-link">GitHub</a>
+        <a href="https://github.com/888wing/sixarms" target="_blank" rel="noopener" class="nav-mobile-star">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
+          </svg>
+          Star on GitHub
+        </a>
       </div>
     </nav>
 
@@ -85,6 +98,42 @@ const { title, description = "AI-powered development progress tracking assistant
         </div>
       </div>
     </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const nav = document.querySelector('.nav');
+
+      mobileMenuBtn?.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        mobileMenu?.classList.toggle('active');
+        document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
+      });
+
+      // Close menu when clicking a link
+      mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuBtn?.classList.remove('active');
+          mobileMenu?.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Scroll effect for nav
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > 50) {
+          nav?.classList.add('scrolled');
+        } else {
+          nav?.classList.remove('scrolled');
+        }
+
+        lastScroll = currentScroll;
+      });
+    </script>
   </body>
 </html>
 
@@ -174,7 +223,83 @@ const { title, description = "AI-powered development progress tracking assistant
     width: 20px;
     height: 2px;
     background: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .nav-mobile-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  .nav-mobile-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-mobile-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  /* Mobile Menu Overlay */
+  .nav-mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-primary);
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-mobile-menu.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-mobile-link {
+    display: block;
+    padding: 1rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
     transition: all 0.2s ease;
+  }
+
+  .nav-mobile-link:hover {
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--accent-green);
+  }
+
+  .nav-mobile-star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    color: var(--accent-amber);
+    border: 1px solid var(--accent-amber);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .nav-mobile-star:hover {
+    background: rgba(255, 184, 0, 0.1);
+  }
+
+  /* Nav Scroll State */
+  .nav.scrolled {
+    padding: 0.75rem 0;
+    background: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
 
   /* Footer */
