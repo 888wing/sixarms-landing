@@ -1,0 +1,6 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <text x="600" y="280" font-family="monospace" font-size="72" fill="#00ff41" text-anchor="middle">Sixarms</text>
+  <text x="600" y="360" font-family="monospace" font-size="28" fill="#00d9ff" text-anchor="middle">AI-powered development progress tracker</text>
+  <text x="600" y="420" font-family="monospace" font-size="20" fill="#4a4a4a" text-anchor="middle">Stop writing daily logs manually. Let AI track your commits.</text>
+</svg>
