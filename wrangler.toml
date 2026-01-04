@@ -1,0 +1,6 @@
+# Cloudflare Pages configuration for Sixarms Landing
+name = "sixarms-landing"
+compatibility_date = "2025-01-04"
+
+[assets]
+directory = "./dist"
