@@ -1,0 +1,95 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  terminalContent: string[];
+}
+
+const { title, description, terminalContent } = Astro.props;
+---
+
+<div class="feature-card">
+  <div class="feature-terminal">
+    <div class="terminal-header-mini">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <div class="terminal-content">
+      {terminalContent.map((line) => (
+        <div class="terminal-line">{line}</div>
+      ))}
+    </div>
+  </div>
+  <div class="feature-info">
+    <h3 class="feature-title">{title}</h3>
+    <p class="feature-description">{description}</p>
+  </div>
+</div>
+
+<style>
+  .feature-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .feature-terminal {
+    background: var(--bg-tertiary);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .terminal-header-mini {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  .terminal-content {
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+  }
+
+  .terminal-line:first-child {
+    color: var(--accent-cyan);
+  }
+
+  .feature-info {
+    padding: 1.25rem;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-description {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+</style>

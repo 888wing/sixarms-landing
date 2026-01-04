@@ -1,0 +1,123 @@
+---
+interface Props {
+  lines: { text: string; delay?: number; class?: string }[];
+  speed?: number;
+}
+
+const { lines, speed = 50 } = Astro.props;
+---
+
+<div class="typewriter-container" data-lines={JSON.stringify(lines)} data-speed={speed}>
+  <div class="typewriter-content"></div>
+  <span class="cursor"></span>
+</div>
+
+<script>
+  class TypeWriter {
+    container: HTMLElement;
+    content: HTMLElement;
+    cursor: HTMLElement;
+    lines: { text: string; delay?: number; class?: string }[];
+    speed: number;
+    currentLine: number = 0;
+    currentChar: number = 0;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.content = container.querySelector('.typewriter-content')!;
+      this.cursor = container.querySelector('.cursor')!;
+      this.lines = JSON.parse(container.dataset.lines || '[]');
+      this.speed = parseInt(container.dataset.speed || '50');
+
+      this.start();
+    }
+
+    async start() {
+      for (const line of this.lines) {
+        if (line.delay) {
+          await this.wait(line.delay);
+        }
+        await this.typeLine(line);
+      }
+    }
+
+    async typeLine(line: { text: string; class?: string }) {
+      const lineEl = document.createElement('div');
+      lineEl.className = `typewriter-line ${line.class || ''}`;
+      this.content.appendChild(lineEl);
+
+      for (const char of line.text) {
+        lineEl.textContent += char;
+        await this.wait(this.speed);
+      }
+
+      await this.wait(200);
+    }
+
+    wait(ms: number): Promise<void> {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  }
+
+  // Initialize all typewriters on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.typewriter-container').forEach(container => {
+      new TypeWriter(container as HTMLElement);
+    });
+  });
+
+  // Also handle Astro's view transitions
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.typewriter-container').forEach(container => {
+      if (!(container as any).__typewriter) {
+        (container as any).__typewriter = new TypeWriter(container as HTMLElement);
+      }
+    });
+  });
+</script>
+
+<style>
+  .typewriter-container {
+    position: relative;
+  }
+
+  .typewriter-content {
+    min-height: 1.5em;
+  }
+
+  :global(.typewriter-line) {
+    margin-bottom: 0.5rem;
+    white-space: pre-wrap;
+  }
+
+  :global(.typewriter-line.prompt) {
+    color: var(--accent-cyan);
+  }
+
+  :global(.typewriter-line.command) {
+    color: var(--text-primary);
+  }
+
+  :global(.typewriter-line.success) {
+    color: var(--accent-green);
+  }
+
+  :global(.typewriter-line.output) {
+    color: var(--text-secondary);
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background: var(--text-primary);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

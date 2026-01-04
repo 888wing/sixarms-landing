@@ -1,0 +1,215 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Privacy Policy - Sixarms">
+  <section class="legal-page">
+    <div class="container">
+      <div class="legal-header">
+        <span class="file-path">// privacy-policy.md</span>
+      </div>
+
+      <article class="legal-content">
+        <h1># Privacy Policy</h1>
+
+        <p class="last-updated">Last updated: January 2026</p>
+
+        <section>
+          <h2>## Data Collection</h2>
+
+          <p>Sixarms collects minimal data necessary for operation:</p>
+
+          <ul>
+            <li><strong>Local Git Data</strong>: Commit messages, file change statistics, and branch information from your Git repositories. This data is stored locally on your device.</li>
+            <li><strong>API Usage</strong>: When using AI features, commit summaries are sent to Grok API for classification. No personal identifiable information is included.</li>
+            <li><strong>Crash Reports</strong>: Anonymous error logs may be collected to improve the application (optional, can be disabled).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>## Data Storage</h2>
+
+          <p>All your development logs are stored <strong>locally</strong> in:</p>
+
+          <div class="code-block">
+            <code>~/Library/Application Support/sixarms/</code>
+          </div>
+
+          <p>We do <strong>not</strong> sync your data to any cloud server. Your development history stays on your machine.</p>
+        </section>
+
+        <section>
+          <h2>## Third-Party Services</h2>
+
+          <h3>### Grok API (x.ai)</h3>
+          <p>When AI features are enabled, Sixarms sends the following to Grok API:</p>
+          <ul>
+            <li>Commit messages (text only)</li>
+            <li>File change summaries</li>
+            <li>Aggregated statistics</li>
+          </ul>
+          <p>We do not send:</p>
+          <ul>
+            <li>Source code content</li>
+            <li>File paths containing usernames</li>
+            <li>Personal identification information</li>
+          </ul>
+          <p>Please review <a href="https://x.ai/legal/privacy-policy" target="_blank" rel="noopener">Grok's Privacy Policy</a> for their data handling practices.</p>
+        </section>
+
+        <section>
+          <h2>## API Key Security</h2>
+
+          <p>Your Grok API key is stored securely using:</p>
+          <ul>
+            <li><strong>macOS</strong>: Keychain Services (encrypted, system-level protection)</li>
+            <li><strong>Windows</strong>: Credential Manager (coming soon)</li>
+          </ul>
+          <p>API keys are never stored in plain text or transmitted to our servers.</p>
+        </section>
+
+        <section>
+          <h2>## Your Rights</h2>
+
+          <p>You have full control over your data:</p>
+          <ul>
+            <li><strong>Access</strong>: View all stored data in the app's data directory</li>
+            <li><strong>Delete</strong>: Remove all data by uninstalling the app or deleting the data folder</li>
+            <li><strong>Export</strong>: Export your development logs in JSON format</li>
+            <li><strong>Disable AI</strong>: Turn off AI features to prevent any external API calls</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>## Updates to This Policy</h2>
+
+          <p>We may update this Privacy Policy from time to time. Changes will be reflected in the "Last updated" date above. Significant changes will be communicated through the application.</p>
+        </section>
+
+        <section>
+          <h2>## Contact</h2>
+
+          <p>For privacy-related questions or concerns:</p>
+          <ul>
+            <li>GitHub Issues: <a href="https://github.com/chuisiufai/sixarms/issues" target="_blank" rel="noopener">github.com/chuisiufai/sixarms/issues</a></li>
+          </ul>
+        </section>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal-page {
+    padding: 8rem 0 4rem;
+  }
+
+  .legal-header {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 1rem 1.5rem;
+  }
+
+  .file-path {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .legal-content {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0 0 8px 8px;
+    padding: 2rem;
+    max-width: 800px;
+  }
+
+  .legal-content h1 {
+    font-size: 1.75rem;
+    color: var(--accent-green);
+    margin-bottom: 0.5rem;
+  }
+
+  .last-updated {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .legal-content section {
+    margin-bottom: 2rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    color: var(--accent-cyan);
+    margin-bottom: 1rem;
+  }
+
+  .legal-content h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 1rem 0 0.5rem;
+  }
+
+  .legal-content p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content ul {
+    list-style: none;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content li {
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .legal-content li::before {
+    content: '•';
+    position: absolute;
+    left: 0.5rem;
+    color: var(--accent-green);
+  }
+
+  .legal-content strong {
+    color: var(--text-primary);
+  }
+
+  .legal-content a {
+    color: var(--accent-cyan);
+  }
+
+  .code-block {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block code {
+    color: var(--accent-green);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .legal-content {
+      padding: 1.5rem;
+    }
+
+    .legal-content h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

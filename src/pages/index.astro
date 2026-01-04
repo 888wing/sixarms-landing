@@ -1,0 +1,321 @@
+---
+import Base from '../layouts/Base.astro';
+import Terminal from '../components/Terminal.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+---
+
+<Base title="Sixarms - AI-Powered Dev Progress Tracker">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Stop writing daily logs <span class="highlight">manually.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Let AI track your development progress automatically.
+        </p>
+
+        <Terminal title="sixarms-terminal" class="hero-terminal">
+          <div class="terminal-animation">
+            <div class="line line-1">
+              <span class="prompt">$</span> <span class="command">sixarms --init</span>
+            </div>
+            <div class="line line-2">
+              <span class="success">✓</span> <span class="output">Scanning git repositories...</span>
+            </div>
+            <div class="line line-3">
+              <span class="success">✓</span> <span class="output">Auto-classifying today's commits...</span>
+            </div>
+            <div class="line line-4">
+              <span class="success">✓</span> <span class="output">Generating daily summary with AI...</span>
+            </div>
+            <div class="line line-5">
+              <span class="prompt">></span> <span class="highlight-text">Ready. Your dev progress is now tracked.</span>
+            </div>
+            <div class="line line-6">
+              <span class="cursor"></span>
+            </div>
+          </div>
+        </Terminal>
+
+        <div class="hero-cta">
+          <a href="/download" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download for macOS
+          </a>
+          <a href="https://github.com/chuisiufai/sixarms" target="_blank" rel="noopener" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <p class="section-label">// FEATURES</p>
+      <h2 class="section-title">What Sixarms Does</h2>
+
+      <div class="features-grid">
+        <FeatureCard
+          title="Auto Tracking"
+          description="Automatically detects Git changes across all your projects. No manual logging required."
+          terminalContent={[
+            "$ git log --oneline",
+            "",
+            "> Commits detected: 12",
+            "> Files changed: 28",
+            "> Auto-logged to Sixarms ✓"
+          ]}
+        />
+
+        <FeatureCard
+          title="Smart Classify"
+          description="AI categorizes your work: feature development, bug fixes, refactoring, and more."
+          terminalContent={[
+            "$ sixarms classify",
+            "",
+            "> feature: 45%",
+            "> bugfix: 30%",
+            "> refactor: 25%"
+          ]}
+        />
+
+        <FeatureCard
+          title="Daily Summary"
+          description="Generates meaningful daily summaries of your development progress automatically."
+          terminalContent={[
+            "$ sixarms summary --today",
+            "",
+            "> \"Implemented user auth",
+            "   with JWT tokens and",
+            "   added password reset...\""
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="container">
+      <p class="section-label">// HOW IT WORKS</p>
+      <h2 class="section-title">Simple Setup, Powerful Tracking</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Add Your Projects</h3>
+          <p>Point Sixarms to your Git repositories. Supports any folder structure.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Set Your Schedule</h3>
+          <p>Configure auto-scan intervals. Daily, hourly, or on-demand.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Let AI Do The Work</h3>
+          <p>Grok AI analyzes your commits and generates intelligent summaries.</p>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <a href="/download" class="btn btn-primary">
+          Get Started Free
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 0 4rem;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .hero-title .highlight {
+    color: var(--accent-green);
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .hero-terminal {
+    margin-bottom: 3rem;
+    text-align: left;
+  }
+
+  .terminal-animation .line {
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .line-1 { animation-delay: 0.5s; }
+  .line-2 { animation-delay: 1.5s; }
+  .line-3 { animation-delay: 2.5s; }
+  .line-4 { animation-delay: 3.5s; }
+  .line-5 { animation-delay: 4.5s; }
+  .line-6 { animation-delay: 5s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .prompt { color: var(--accent-cyan); }
+  .command { color: var(--text-primary); }
+  .success { color: var(--accent-green); }
+  .output { color: var(--text-secondary); }
+  .highlight-text { color: var(--accent-green); }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background: var(--text-primary);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Features Section */
+  .features {
+    padding: 6rem 0;
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* How It Works Section */
+  .how-it-works {
+    padding: 6rem 0;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .step {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .step-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    opacity: 0.3;
+    margin-bottom: 1rem;
+  }
+
+  .step h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 6rem 0 3rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,410 @@
+---
+import Base from '../layouts/Base.astro';
+import Terminal from '../components/Terminal.astro';
+import DownloadButton from '../components/DownloadButton.astro';
+---
+
+<Base title="Download - Sixarms">
+  <section class="download-hero">
+    <div class="container">
+      <h1>Download Sixarms</h1>
+      <p class="subtitle">Start tracking your development progress in minutes.</p>
+
+      <Terminal title="sixarms-download" class="download-terminal">
+        <div class="download-animation">
+          <div class="line">
+            <span class="prompt">$</span> <span class="command">curl -O sixarms.app/download/latest</span>
+          </div>
+          <div class="line progress-line">
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <span class="progress-text">100%</span>
+          </div>
+          <div class="line">
+            <span class="success">✓</span> <span class="output">sixarms-1.0.0-universal.dmg downloaded</span>
+          </div>
+        </div>
+      </Terminal>
+
+      <DownloadButton version="1.0.0" size="45 MB" />
+    </div>
+  </section>
+
+  <!-- System Requirements -->
+  <section class="requirements">
+    <div class="container">
+      <h2>System Requirements</h2>
+
+      <div class="requirements-grid">
+        <div class="requirement-card">
+          <div class="req-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3>macOS</h3>
+          <ul>
+            <li>macOS 12.0 (Monterey) or later</li>
+            <li>Apple Silicon or Intel processor</li>
+            <li>~100MB disk space</li>
+          </ul>
+        </div>
+
+        <div class="requirement-card coming-soon">
+          <div class="req-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3>Windows</h3>
+          <span class="badge">Coming Soon</span>
+          <ul>
+            <li>Windows 10/11</li>
+            <li>64-bit processor</li>
+            <li>~100MB disk space</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Windows Waitlist -->
+  <section class="waitlist" id="windows-waitlist">
+    <div class="container">
+      <Terminal title="sixarms-windows" class="waitlist-terminal">
+        <div class="waitlist-content">
+          <div class="line">
+            <span class="prompt">$</span> <span class="command">sixarms --platform windows</span>
+          </div>
+          <div class="line">
+            <span class="output">> Windows version: Coming Soon</span>
+          </div>
+          <div class="line">
+            <span class="output">> Enter your email to get notified</span>
+          </div>
+        </div>
+      </Terminal>
+
+      <form class="waitlist-form" id="waitlist-form">
+        <input
+          type="email"
+          placeholder="your@email.com"
+          class="input"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Notify Me</button>
+      </form>
+      <p class="waitlist-note">We'll only email you when Windows version is ready.</p>
+    </div>
+  </section>
+
+  <!-- Installation Guide -->
+  <section class="installation">
+    <div class="container">
+      <h2>Installation Guide</h2>
+
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Download the .dmg file</h3>
+            <p>Click the download button above to get the latest version.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Open the downloaded file</h3>
+            <p>Double-click the .dmg file in your Downloads folder.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Drag to Applications</h3>
+            <p>Drag the Sixarms icon to the Applications folder.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Open Sixarms</h3>
+            <p>Launch from Applications. Grant permissions when prompted.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>Add your Grok API Key</h3>
+            <p>Get your API key from <a href="https://x.ai" target="_blank" rel="noopener">x.ai</a> and enter it in Settings.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('waitlist-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = form.querySelector('input[type="email"]') as HTMLInputElement;
+    const email = input?.value;
+
+    // For now, just show a success message
+    // In production, you'd send this to your backend
+    alert(`Thanks! We'll notify ${email} when Windows version is ready.`);
+    input.value = '';
+  });
+</script>
+
+<style>
+  /* Download Hero */
+  .download-hero {
+    padding: 10rem 0 4rem;
+    text-align: center;
+  }
+
+  .download-hero h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .download-terminal {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    text-align: left;
+  }
+
+  .download-animation .line {
+    margin-bottom: 0.75rem;
+  }
+
+  .prompt { color: var(--accent-cyan); }
+  .command { color: var(--text-primary); }
+  .success { color: var(--accent-green); }
+  .output { color: var(--text-secondary); }
+
+  .progress-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+    animation: progress 2s ease-out forwards;
+  }
+
+  @keyframes progress {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .progress-text {
+    color: var(--accent-green);
+    font-size: 0.8rem;
+  }
+
+  /* Requirements */
+  .requirements {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .requirements h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+  }
+
+  .requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .requirement-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .requirement-card.coming-soon {
+    opacity: 0.6;
+  }
+
+  .req-icon {
+    color: var(--accent-cyan);
+    margin-bottom: 1rem;
+  }
+
+  .requirement-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .requirement-card ul {
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .requirement-card li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .requirement-card li::before {
+    content: '├──';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+  }
+
+  .requirement-card li:last-child::before {
+    content: '└──';
+  }
+
+  .badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent-amber);
+    color: var(--bg-primary);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* Waitlist */
+  .waitlist {
+    padding: 4rem 0;
+  }
+
+  .waitlist-terminal {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    text-align: left;
+  }
+
+  .waitlist-content .line {
+    margin-bottom: 0.5rem;
+  }
+
+  .waitlist-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .waitlist-form .input {
+    flex: 1;
+  }
+
+  .waitlist-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 1rem;
+  }
+
+  /* Installation */
+  .installation {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .installation h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+  }
+
+  .install-steps {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .install-step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .install-step:last-child {
+    border-bottom: none;
+  }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-green);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .step-content h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .step-content p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .step-content a {
+    color: var(--accent-cyan);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .download-hero h1 {
+      font-size: 2rem;
+    }
+
+    .waitlist-form {
+      flex-direction: column;
+    }
+  }
+</style>

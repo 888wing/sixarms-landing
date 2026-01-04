@@ -1,0 +1,116 @@
+---
+interface Props {
+  version?: string;
+  size?: string;
+}
+
+const { version = "1.0.0", size = "45 MB" } = Astro.props;
+---
+
+<div class="download-section">
+  <a href="#" class="download-btn" id="download-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    <span class="download-text">Download for macOS</span>
+  </a>
+  <div class="download-meta">
+    <span>Universal (Intel + Apple Silicon)</span>
+    <span class="separator">•</span>
+    <span>Version {version}</span>
+    <span class="separator">•</span>
+    <span>{size}</span>
+  </div>
+</div>
+
+<script>
+  // Platform detection
+  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const isWindows = navigator.platform.toUpperCase().indexOf('WIN') >= 0;
+
+  const downloadBtn = document.getElementById('download-btn');
+  const downloadText = downloadBtn?.querySelector('.download-text');
+
+  if (downloadBtn && downloadText) {
+    if (isMac) {
+      downloadBtn.setAttribute('href', '/downloads/sixarms-latest.dmg');
+      downloadText.textContent = 'Download for macOS';
+    } else if (isWindows) {
+      downloadBtn.setAttribute('href', '#windows-waitlist');
+      downloadText.textContent = 'Windows Coming Soon';
+      downloadBtn.classList.add('disabled');
+    } else {
+      downloadBtn.setAttribute('href', '/downloads/sixarms-latest.dmg');
+      downloadText.textContent = 'Download for macOS';
+    }
+  }
+</script>
+
+<style>
+  .download-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bg-primary);
+    background: var(--accent-green);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+  }
+
+  .download-btn:hover {
+    background: var(--text-secondary);
+    box-shadow: 0 0 50px rgba(0, 255, 65, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .download-btn.disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .download-btn.disabled:hover {
+    transform: none;
+    background: var(--text-muted);
+  }
+
+  .download-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .separator {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 480px) {
+    .download-meta {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .separator {
+      display: none;
+    }
+  }
+</style>
