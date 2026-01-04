@@ -1,0 +1,89 @@
+---
+interface Props {
+  src: string;
+  class?: string;
+  loop?: boolean;
+  autoplay?: boolean;
+  width?: string;
+  height?: string;
+}
+
+const {
+  src,
+  class: className = "",
+  loop = true,
+  autoplay = true,
+  width = "100%",
+  height = "auto"
+} = Astro.props;
+---
+
+<div
+  class:list={["lottie-container", className]}
+  data-src={src}
+  data-loop={loop}
+  data-autoplay={autoplay}
+  style={`width: ${width}; height: ${height};`}
+>
+  <div class="lottie-player"></div>
+</div>
+
+<script>
+  // Load Lottie library dynamically
+  async function loadLottie() {
+    if (typeof window !== 'undefined' && !(window as any).lottie) {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+      script.async = true;
+      document.head.appendChild(script);
+
+      await new Promise((resolve) => {
+        script.onload = resolve;
+      });
+    }
+    return (window as any).lottie;
+  }
+
+  async function initLottieContainers() {
+    const lottie = await loadLottie();
+
+    document.querySelectorAll('.lottie-container').forEach((container) => {
+      const player = container.querySelector('.lottie-player');
+      const src = container.getAttribute('data-src');
+      const loop = container.getAttribute('data-loop') === 'true';
+      const autoplay = container.getAttribute('data-autoplay') === 'true';
+
+      if (player && src && !(container as any).__lottie) {
+        (container as any).__lottie = lottie.loadAnimation({
+          container: player,
+          renderer: 'svg',
+          loop: loop,
+          autoplay: autoplay,
+          path: src
+        });
+      }
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initLottieContainers);
+  document.addEventListener('astro:page-load', initLottieContainers);
+</script>
+
+<style>
+  .lottie-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lottie-player {
+    width: 100%;
+    height: 100%;
+  }
+
+  .lottie-player svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>

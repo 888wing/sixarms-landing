@@ -1,0 +1,260 @@
+---
+interface Props {
+  title?: string;
+  class?: string;
+}
+
+const { title = "sixarms", class: className = "" } = Astro.props;
+---
+
+<div class:list={["animated-terminal", className]}>
+  <!-- Glow Effect Background -->
+  <div class="terminal-glow"></div>
+
+  <!-- Terminal Window -->
+  <div class="terminal-window">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <span class="terminal-title">{title}</span>
+      <div class="terminal-actions">
+        <span class="action-dot"></span>
+        <span class="action-dot"></span>
+      </div>
+    </div>
+
+    <div class="terminal-body">
+      <slot />
+
+      <!-- Floating Particles -->
+      <div class="particles">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reflection -->
+  <div class="terminal-reflection"></div>
+</div>
+
+<style>
+  .animated-terminal {
+    position: relative;
+    perspective: 1000px;
+  }
+
+  .terminal-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 255, 65, 0.15) 0%,
+      transparent 70%
+    );
+    filter: blur(20px);
+    z-index: -1;
+    animation: glowBreath 4s ease-in-out infinite;
+  }
+
+  @keyframes glowBreath {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+
+  .terminal-window {
+    background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    transform: rotateX(2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .animated-terminal:hover .terminal-window {
+    transform: rotateX(0deg) translateY(-4px);
+    box-shadow:
+      0 35px 60px -15px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 1px 0 rgba(255, 255, 255, 0.1) inset,
+      0 0 40px rgba(0, 255, 65, 0.1);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .dot::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+  }
+
+  .dot.red {
+    background: linear-gradient(180deg, #ff6b6b 0%, #ff5f56 100%);
+    box-shadow: 0 0 8px rgba(255, 95, 86, 0.5);
+  }
+
+  .dot.yellow {
+    background: linear-gradient(180deg, #ffd93d 0%, #ffbd2e 100%);
+    box-shadow: 0 0 8px rgba(255, 189, 46, 0.5);
+  }
+
+  .dot.green {
+    background: linear-gradient(180deg, #6bcb77 0%, #27ca40 100%);
+    box-shadow: 0 0 8px rgba(39, 202, 64, 0.5);
+  }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .terminal-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .action-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--text-dim);
+    opacity: 0.5;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Floating Particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 8s infinite;
+  }
+
+  .particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .particle:nth-child(2) {
+    left: 30%;
+    animation-delay: 1.5s;
+  }
+
+  .particle:nth-child(3) {
+    left: 50%;
+    animation-delay: 3s;
+  }
+
+  .particle:nth-child(4) {
+    left: 70%;
+    animation-delay: 4.5s;
+  }
+
+  .particle:nth-child(5) {
+    left: 90%;
+    animation-delay: 6s;
+  }
+
+  @keyframes float {
+    0% {
+      bottom: -10px;
+      opacity: 0;
+      transform: translateX(0);
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      bottom: 100%;
+      opacity: 0;
+      transform: translateX(20px);
+    }
+  }
+
+  /* Reflection */
+  .terminal-reflection {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -40px;
+    height: 40px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 255, 65, 0.08) 0%,
+      transparent 100%
+    );
+    filter: blur(10px);
+    border-radius: 50%;
+    transform: scaleY(0.3);
+  }
+
+  @media (max-width: 768px) {
+    .terminal-body {
+      padding: 1rem;
+      font-size: 0.8rem;
+      min-height: 180px;
+    }
+
+    .terminal-window {
+      transform: none;
+    }
+
+    .animated-terminal:hover .terminal-window {
+      transform: translateY(-2px);
+    }
+  }
+</style>
