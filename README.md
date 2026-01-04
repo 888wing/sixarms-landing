@@ -1,6 +1,6 @@
 # Sixarms Landing Page
 
-Landing page for [Sixarms](https://github.com/chuisiufai/sixarms) - AI-powered development progress tracking assistant.
+Landing page for [Sixarms](https://github.com/888wing/sixarms) - AI-powered development progress tracking assistant.
 
 ## Tech Stack
 
